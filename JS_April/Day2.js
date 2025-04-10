@@ -1,0 +1,1 @@
+//✅ 4. Hoisting in JavaScript
