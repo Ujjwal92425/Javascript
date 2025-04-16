@@ -1,3 +1,4 @@
-(function () {
-    console.log(Math.floor(Math.random() * 10));
-})();
+let viewFast = setTimeout(() => {
+//   console.log("You won't see this ");
+//   clearTimeout(viewFast);
+// }, 1000);
