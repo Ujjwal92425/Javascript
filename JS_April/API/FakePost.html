@@ -1,28 +1,37 @@
-<!DOCTYPE html>
+<!-- 3️⃣ POST Request: Fake Create Post
+API: https://jsonplaceholder.typicode.com/posts
+🧠 Task: title + body ka object POST karo, console me response dikhao.
+
+ Output:
+ { id: 101, title: "...", body: "...", userId: 1 } -->
+
+
+ <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>POST Request Example</title>
   </head>
   <body>
     <script>
       async function fakePost() {
         try {
-          const res = await fetch(
-            "https://jsonplaceholder.typicode.com/posts",
-            {
-              headers: {
-                Accept: "Applacation/json",
-              },
-            }
-          );
+          const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              title: "Bhai ka Title",
+              body: "Yeh body content hai",
+              userId: 1,
+            }),
+          });
 
-          let data = await res.json();
-          console.log("✅ First post title:", data[0].title);
-          console.log("✅ Second post title:", data[1].title);
-        } catch {
-          console.log("Can't fetch API");
+          const data = await res.json();
+          console.log("✅ Response from server:", data);
+        } catch (error) {
+          console.error("❌ Can't post to API:", error);
         }
       }
 

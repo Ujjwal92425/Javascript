@@ -1,0 +1,41 @@
+<!-- 4️⃣ POST Request: Create New User
+API: https://reqres.in/api/users
+🧠 Task: User ka naam + job bhejna hai, aur response me id aur createdAt milna chahiye.
+
+
+ Input: { name: "Arjun", job: "Warrior" }
+ Output: { id: "...", createdAt: "..." } -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      async function PostUser() {
+        try {
+          const res = await fetch("https://reqres.in/api/users", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: "Arjun",
+              job: "Warrior",
+            }),
+          });
+
+          const data = await res.json();
+          console.log("✅ Response from server:", data);
+        } catch (error) {
+          console.error("❌ Can't post to API:", error);
+        }
+      }
+
+      PostUser();
+    </script>
+  </body>
+</html>
