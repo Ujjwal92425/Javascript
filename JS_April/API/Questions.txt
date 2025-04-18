@@ -1,0 +1,49 @@
+📚 Aaj ke liye: fetch, GET, POST — 5 Practice Problems 💪
+1️⃣ GET Request: Random Advice Fetcher
+API: https://api.adviceslip.com/advice
+🧠 Task: Ek button dabao, ek nayi advice console me dikhao.
+
+// Expected Output: "Always be nice to your friends."
+
+
+
+2️⃣ GET Request: Public APIs List
+API: https://api.publicapis.org/entries
+🧠 Task: 5 API names + categories console me print karo.
+
+// Output: 
+// 1. Cat Facts - Animals
+// 2. JokeAPI - Entertainment
+// ...
+
+
+
+
+3️⃣ POST Request: Fake Create Post
+API: https://jsonplaceholder.typicode.com/posts
+🧠 Task: title + body ka object POST karo, console me response dikhao.
+
+// Output:
+// { id: 101, title: "...", body: "...", userId: 1 }
+
+
+
+
+4️⃣ POST Request: Create New User
+API: https://reqres.in/api/users
+🧠 Task: User ka naam + job bhejna hai, aur response me id aur createdAt milna chahiye.
+
+
+// Input: { name: "Arjun", job: "Warrior" }
+// Output: { id: "...", createdAt: "..." }
+
+
+
+5️⃣ GET Request with User Input: GitHub Username
+API: https://api.github.com/users/USERNAME
+🧠 Task: User input le, GitHub username ke data fetch karo (name, followers, public_repos)
+
+// Output: 
+// Name: Arjun Kumar
+// Followers: 52
+// Public Repos: 34

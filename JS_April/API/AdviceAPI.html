@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Advice Generator</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background: #1f1f1f;
+        text-align: center;
+        padding: 50px;
+      }
+      #heading {
+        text-align: center;
+        color: blueviolet;
+        text-shadow: yellow;
+      }
+      .box {
+        background: linear-gradient(rgb(188, 139, 234), rgb(120, 120, 242));
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 0 10px #c92929;
+        width: 300px;
+        margin: auto;
+      }
+      #btn1 {
+        margin-top: 2rem;
+        padding: 10px 20px;
+        border: none;
+        background: #28a745;
+        box-shadow: 0 0 10px #c0e603;
+        color: white;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="heading">Advice Generator</h1>
+    <div class="box">
+      <p id="advice">Click on button for advice</p>
+      <br /><br />
+      <button id="btn1" onclick="handleClick()">Load</button>
+    </div>
+
+    <script>
+      async function handleClick() {
+        const advPara = document.getElementById("advice");
+        advPara.textContent = "Loading advice... 🤔";
+
+        try {
+          const response = await fetch("https://api.adviceslip.com/advice");
+          const data = await response.json();
+          advPara.textContent = `"${data.slip.advice}"`;
+        } catch (error) {
+          advPara.textContent = "Error loading advice! ❌";
+        }
+      }
+    </script>
+  </body>
+</html>

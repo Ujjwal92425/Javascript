@@ -1,0 +1,46 @@
+<!-- 2️⃣ GET Request: Public APIs List
+API: https://api.publicapis.org/entries
+🧠 Task: 5 API names + categories console me print karo.
+
+// Output: 
+// 1. Cat Facts - Animals
+// 2. JokeAPI - Entertainment -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Public APIs</title>
+  </head>
+  <body>
+    <h2>Open Console to see API Output</h2>
+
+    <script>
+      async function getData() {
+        try {
+          const res = await fetch("https://api.publicapis.org/entries");
+
+          // ✅ Convert response to JSON
+          const data = await res.json();
+
+          // ✅ Safely access entries array
+          if (data && data.entries && Array.isArray(data.entries)) {
+            for (let i = 0; i < 5; i++) {
+              const api = data.entries[i];
+              if (api) {
+                console.log(`${i + 1}. ${api.API} - ${api.Category}`);
+              }
+            }
+          } else {
+            console.error("Entries not found in API response");
+          }
+        } catch (error) {
+          console.error("❌ Error fetching API:", error.message);
+        }
+      }
+
+      getData();
+    </script>
+  </body>
+</html>
+

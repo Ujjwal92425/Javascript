@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      async function fakePost() {
+        try {
+          const res = await fetch(
+            "https://jsonplaceholder.typicode.com/posts",
+            {
+              headers: {
+                Accept: "Applacation/json",
+              },
+            }
+          );
+
+          let data = await res.json();
+          console.log("✅ First post title:", data[0].title);
+          console.log("✅ Second post title:", data[1].title);
+        } catch {
+          console.log("Can't fetch API");
+        }
+      }
+
+      fakePost();
+    </script>
+  </body>
+</html>

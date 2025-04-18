@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>😂 Joke Generator</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f0f0f0;
+      text-align: center;
+      padding: 50px;
+    }
+
+    #jokeBox {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 10px #ccc;
+      width: 300px;
+      margin: auto;
+    }
+
+    button {
+      margin-top: 1rem;
+      padding: 10px 20px;
+      border: none;
+      background: #28a745;
+      color: white;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #218838;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>😂 Random Joke Generator</h2>
+
+  <div id="jokeBox">
+    <p id="joke">Click the button to load a joke!</p>
+    <button onclick="getJoke()">Get Joke</button>
+  </div>
+
+  <script>
+    async function getJoke() {
+      const jokePara = document.getElementById('joke');
+      jokePara.textContent = "Loading joke... 🤔";
+
+      try {
+        const res = await fetch('https://icanhazdadjoke.com/', {
+          headers: {
+            Accept: 'application/json'
+          }
+        });
+
+        const data = await res.json();
+        jokePara.textContent = data.joke;
+      } catch (error) {
+        console.error("❌ Error:", error);
+        jokePara.textContent = "Failed to load joke. Try again!";
+      }
+    }
+  </script>
+
+</body>
+</html>
