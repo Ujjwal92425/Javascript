@@ -146,7 +146,7 @@ fetchData("",success,reject);
 // multipleCallback("Ujjwal",Hello,nameP,gd)
 
 
-//! ADVANCE 🔥 PROBLEMS 📝
+//! ADVANCED 🔥 PROBLEMS 📝
 /*1. Error-First Callback (with callback chaining)
 Write a function that fetches user data by ID. If the ID is not a number, it should return an error message. Chain multiple callbacks for success and failure handling.*/
 
