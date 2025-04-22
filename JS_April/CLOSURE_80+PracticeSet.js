@@ -201,3 +201,19 @@ function greeting(name) {
   greeting.once("Aman");  // ❌ Already greeted!
   greeting.once("Neha");  // ❌ Already greeted!
 //^ SEE AGAIN AND AGAIN   
+
+
+
+/*
+
+🔧 Improvement Tips (thoda aur sharp karne ke liye):
+Callback with Closure Practice:
+Practice closure inside callbacks — like in setTimeout, event listeners, async patterns.
+
+Closure in Loops & Async
+e.g., for loop + setTimeout (var vs let) — jo tu already touch kar chuka hai.
+
+Project me Closure Use:
+Build a small project (like counter app, dark mode toggle, secret manager) — closure ke saath banake full real feel aayega.
+
+*/
