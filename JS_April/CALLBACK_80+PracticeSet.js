@@ -145,109 +145,124 @@ fetchData("",success,reject);
 // }
 // multipleCallback("Ujjwal",Hello,nameP,gd)
 
-
 //! ADVANCED 🔥 PROBLEMS 📝
 /*1. Error-First Callback (with callback chaining)
 Write a function that fetches user data by ID. If the ID is not a number, it should return an error message. Chain multiple callbacks for success and failure handling.*/
 
-function getUserById(id, callback) {
-  if (typeof id !== 'number') {
-    return callback("Error: ID must be a number", null);
-  }
-  // Simulate async data fetch
-  setTimeout(() => {
-    const user = { id, name: "User" + id };
-    callback(null, user);
-  }, 1000);
-}
+// function getUserById(id, callback) {
+//   if (typeof id !== 'number') {
+//     return callback("Error: ID must be a number", null);
+//   }
+//   // Simulate async data fetch
+//   setTimeout(() => {
+//     const user = { id, name: "User" + id };
+//     callback(null, user);
+//   }, 1000);
+// }
 
-getUserById(5, function(err, user) {
-  if (err) return console.log(err);
-  console.log("User fetched:", user);
-  // Do more async stuff here with user...
-});
-
+// getUserById(5, function(err, user) {
+//   if (err) return console.log(err);
+//   console.log("User fetched:", user);
+//   // Do more async stuff here with user...
+// });
 
 /*
 2. Callback with Multiple Parameters (custom logger)
 Create a custom logger that accepts a callback and logs different types of data (string, object, number) depending on the type. Call the logger with various data.*/
 
-function customLogger(data, callback) {
-  if (typeof data === 'string') {
-    callback('Logging string:', data);
-  } else if (typeof data === 'object') {
-    callback('Logging object:', JSON.stringify(data));
-  } else if (typeof data === 'number') {
-    callback('Logging number:', data);
-  } else {
-    callback('Unknown data type:', data);
-  }
-}
+// function customLogger(data, callback) {
+//   if (typeof data === "string") {
+//     callback("Logging string:", data);
+//   } else if (typeof data === "object") {
+//     callback("Logging object:", JSON.stringify(data));
+//   } else if (typeof data === "number") {
+//     callback("Logging number:", data);
+//   } else {
+//     callback("Unknown data type:", data);
+//   }
+// }
 
-customLogger("Hello", console.log);   // String
-customLogger({ key: "value" }, console.log); // Object
-customLogger(42, console.log);   // Number
-customLogger(true, console.log); // Unknown
-
+// customLogger("Hello", console.log);
+// customLogger({ key: "value" }, console.log);
+// customLogger(42, console.log);
+// customLogger(true, console.log);
 
 /*
 3. Simulate Asynchronous File Reading (callback chaining)
 Simulate reading from a file (asynchronous), where the first callback reads the file, and the second processes it. Chain them together. */
 
-function readFile(callback) {
-  setTimeout(() => {
-    const fileContent = "Data from file!";
-    callback(fileContent);
-  }, 1000);
-}
+// function readFile(callback) {
+//   setTimeout(() => {
+//     console.log("📁 Reading File...");
+//     const fileData = "Hello ChatGPT , How are u";
+//     callback(fileData); // Chain to process after reading
+//   }, 1000);
+// }
 
-function processFile(content, callback) {
-  setTimeout(() => {
-    const processedContent = content.toUpperCase();
-    callback(processedContent);
-  }, 1000);
-}
+// function processData(data) {
+//   setTimeout(() => {
+//     console.log("🧠 Processing Data...");
+//     const processedData = data.toUpperCase();
+//     console.log("📄 Final Output:", processedData);
+//   }, 2000);
+// }
 
-readFile(function(content) {
-  console.log("File read:", content);
-  processFile(content, function(processedContent) {
-    console.log("Processed content:", processedContent);
-  });
-});
+// // Run it
+// readFile(processData);
 
 /*
 
 /*
 4. Timeout Callback Execution (callback inside timeout)
 Simulate a timeout where after a 2-second delay, a callback is called to display a message.  */
-
-function delayedExecution(callback) {
-  setTimeout(() => {
-    callback("Task completed after delay!");
-  }, 2000);
-}
-
-delayedExecution(function(message) {
-  console.log(message);  // Should log after 2 seconds
-});
-
+// function TimeoutCallbackExecution(message, callback) {
+//   setTimeout(() => {
+//     const res = callback(message);
+//     console.log(res);
+//   }, 2000);
+// }
+// function printmessage(msg) {
+//   return msg;
+// }
+// TimeoutCallbackExecution("Hello ChatGPT", printmessage);
 
 /*
 5. Validate and Transform Data (using callbacks for validation)
 Write a function that accepts an array of numbers and a validation function (callback). It should return only valid numbers that pass the validation.*/
 
-function validateAndTransform(arr, validator, callback) {
-  const validNumbers = arr.filter(validator);
-  callback(validNumbers);
+// function Validate(arr, callback) {
+//   let res = [];
+//   console.log("Initial Array : ", arr);
+//   for (let i = 0; i < arr.length; i++) {
+//     if (callback(arr[i])) {      // check agar valid hai toh
+//       res.push(arr[i]);          // number ko hi push karo
+//     }
+//   }
+//   console.log("Valid Array : ",res)
+  
+// }
+// function isValid(num) {
+//   return num >= 0;
+// }
+// const arr = [2, -1, 5, -10, 6, -2];
+// Validate(arr, isValid);
+
+//^ Retry calling a function until it returns true or retries exhausted
+function retry(callback, maxTries) {
+  for (let i = 0; i < maxTries; i++) {
+    if (callback()) {
+      console.log(`Success on attempt ${i + 1}`);
+      return;
+    }
+    console.log(`Attempt ${i + 1} failed`);
+  }
+  console.log("All attempts failed.");
 }
 
-function isValidNumber(num) {
-  return num >= 0;  // Allow only non-negative numbers
+let attempt = 0;
+function unstableTask() {
+  attempt++;
+  return attempt === 3; // succeed on 3rd attempt
 }
 
-function printValidNumbers(numbers) {
-  console.log("Valid Numbers:", numbers);
-}
-
-validateAndTransform([10, -5, 30, -1, 25], isValidNumber, printValidNumbers);
-
+retry(unstableTask, 5);
