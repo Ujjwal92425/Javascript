@@ -1,22 +1,37 @@
-<!-- ✅ Create a button that adds a red box to the screen using createElement, classList.add, and appendChild. -->
+<!-- ✅ Click the button to create red box using createElement + classList.add + appendChild -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1 id="heading">
-      Create a button that adds a red box to the screen using createElement,
-      classList.add, and appendChild.
-    </h1>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Red Box Creator</title>
+  <style>
+    .red {
+      background-color: red;
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h6>
+    ✅ Click the button to create red box using createElement + classList.add + appendChild
+  </h6>
 
-    <button id="btn" > Click Me </button>
+  <!-- Button to trigger -->
+  <button onclick="create()">Click Me</button>
 
-    <script>
-        const r = document.getElementById("btn")
-        r.classList.add("red")
-    </script>
-  </body>
+  <!-- This div will be parent of red boxes -->
+  <div id="boxContainer"></div>
+
+  <script>
+    function create() {
+      const parent = document.getElementById("boxContainer"); // 🧱 Parent container
+      const newBox = document.createElement("div"); // 🧱 New div
+      newBox.classList.add("red"); // 🎨 Add red background
+      parent.appendChild(newBox); // ➕ Add to screen
+    }
+  </script>
+</body>
 </html>

@@ -1,0 +1,62 @@
+<!-- 🗑️ Create a list of users. On each name, add a ❌ to delete them using .remove(). -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User List with Delete</title>
+    <style>
+      .user {
+        margin: 5px 0;
+        padding: 6px;
+        font-size: 18px;
+      }
+
+      .delete-btn {
+        color: red;
+        cursor: pointer;
+        margin-left: 10px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>🧑‍💻 User List</h2>
+
+    <!-- Input and button -->
+    <input type="text" id="name" placeholder="Enter name" />
+    <button onclick="addUser()">Add User</button>
+
+    <!-- List where users will be added -->
+    <ul id="list"></ul>
+
+    <script>
+      function addUser() {
+        const input = document.getElementById("name");
+        const list = document.getElementById("list");
+
+        // 🧱 Step 1: Create new li
+        const li = document.createElement("li");
+        li.classList.add("user");
+        li.innerText = input.value;
+
+        // ❌ Step 2: Create delete button
+        const del = document.createElement("span");
+        del.innerText = "❌";
+        del.classList.add("delete-btn");
+
+        // 🧨 Step 3: On click, remove the <li>
+        del.addEventListener("click", () => {
+          li.remove();
+        });
+
+        // 📦 Step 4: Put ❌ inside li and li inside ul
+        li.appendChild(del);
+        list.appendChild(li);
+
+        // 🧹 Step 5: Clear the input field
+        input.value = "";
+      }
+    </script>
+  </body>
+</html>

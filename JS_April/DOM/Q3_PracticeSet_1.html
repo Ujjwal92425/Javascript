@@ -1,0 +1,32 @@
+<!-- ❌ Create an input field where if user types empty and clicks "Submit", it adds error class (red border). Remove error once something is typed. -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Input Validation</title>
+    <style>
+      .red {
+        border: 2px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <label>Enter your username</label><br /><br />
+    <input type="text" id="name" placeholder="Username" />
+    <button onclick="check()">Submit</button>
+
+    <script>
+      function check() {
+        const data = document.getElementById("name");
+
+        if (data.value.trim() === "") {//input feild ke case me hum .value ka use krte hai n ki innerText ka
+          data.classList.add("red"); 
+        } else {
+          data.classList.remove("red");
+        }
+      }
+    </script>
+  </body>
+</html>

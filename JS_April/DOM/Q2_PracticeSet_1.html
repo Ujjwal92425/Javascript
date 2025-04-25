@@ -1,0 +1,26 @@
+<!-- ✅ Create a dark/light theme toggle using classList.toggle() on <body>. Change background and text color. -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    .dark {
+      background-color: black;
+      color: white;
+    }
+  </style>
+  <body>
+    <h1>Create a dark/light theme toggle using classList.toggle() on body</h1>
+    <p>Change background and text color.</p>
+    <button id="btn" onclick="changeTheme()">Change Theme</button>
+
+    <script>
+      function changeTheme() {
+        document.body.classList.toggle("dark");
+      }
+    </script>
+  </body>
+</html>
