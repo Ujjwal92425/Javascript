@@ -10,12 +10,30 @@
       Hello <b>Bold</b> <span style="display: none">Hidden</span>
     </div>
 
+    <!-- 🔨 Mini Task for You: HTML likh: html Copy Edit
+    <h2 id="greet">Namaste</h2>
+    JS likh: innerText se "Good Morning" karo innerHTML se greeting bold mein
+    karo textContent print karo console pe -->
+
+    <h2 id="greet">Namaste</h2>
+
     <script>
       const el = document.getElementById("test");
 
       console.log("innerText:", el.innerText);
       console.log("textContent:", el.textContent);
       console.log("innerHTML:", el.innerHTML);
+
+      const greet = document.getElementById("greet");
+
+      // 1. Change innerText
+      greet.innerText = "Good Morning";
+
+      // 2. Now make it bold using innerHTML
+      greet.innerHTML = "<b>Good Morning</b>"; // ⚡ Bold ho gaya!
+
+      // 3. Show textContent
+      console.log("textContent:", greet.textContent);
     </script>
   </body>
 </html>
