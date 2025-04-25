@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- //getElementById     -->
+    <h1 id="mainHeading">Hello</h1>
+
+    <!-- //getElementsByClassName -->
+    <p class="item">Item 1</p>
+    <p class="item">Item 2</p>
+
+    <!-- //querySelector -->
+    <div class="box" id="first">One</div>
+
+    <!-- //querySelectorAll -->
+    <div class="box">A</div>
+    <div class="box">B</div>
+
+    <script>
+      //getElementById
+      const heading = document.getElementById("mainHeading");
+      console.log(heading.innerText); // Hello
+
+      //getElementsByClassName
+
+      const items = document.getElementsByClassName("item");
+      console.log(items.length); // 2
+      console.log(items[0].innerText); // Item 1
+
+      //querySelector
+      const box = document.querySelector(".box"); // selects first .box
+      console.log(box.innerText); // One
+
+      //querySelectorAll
+      const boxes = document.querySelectorAll(".box");
+      boxes.forEach((box) => {
+        console.log(box.innerText); // A then B
+      });
+    </script>
+  </body>
+</html>
