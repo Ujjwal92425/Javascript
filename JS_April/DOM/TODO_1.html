@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TODO 1</title>
+
+    <style>
+      #box {
+        height: 400px;
+        width: 600px;
+        background-color: burlywood;
+        color: blue;
+        border: 2px solid black;
+        border-radius: 1cap;
+        margin: auto;
+        padding: 50px;
+      }
+      #task {
+        background-color: antiquewhite;
+        border: 2px solid rgb(0, 0, 0);
+        box-shadow: rgb(26, 215, 240) 1px 1px 10px;
+      }
+      #btn1 {
+        height: 30px;
+        width: 60px;
+        border-radius: 1cap;
+        border: 2px solid burlywood;
+        background-color: rgb(101, 241, 101);
+        box-shadow: green 2px 2px 10px;
+      }
+      .span {
+        color: black;
+        margin-left: 10px;
+        cursor: pointer;
+      }
+
+      .green {
+        color: green;
+        font-weight: bolder;
+        font-family: Georgia, "Times New Roman", Times, serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <label for="Add Task">Add Task</label><br /><br />
+      <input
+        type="text"
+        id="task"
+        placeholder="Enter Task to add"
+      /><br /><br />
+      <button type="button" id="btn1" onclick="addTask()">Add</button
+      ><br /><br />
+
+      <ul id="allTask"></ul>
+    </div>
+
+    <script>
+      function addTask() {
+        const inp = document.getElementById("task");
+        const data = inp.value.trim();
+
+        const list = document.getElementById("allTask");
+        const task = document.createElement("li");
+        task.innerText = data;
+        list.appendChild(task);
+
+        const read = document.createElement("span");
+        read.innerText = " Mark as Read  : ✅";
+        read.classList.add("span");
+
+        const del = document.createElement("span");
+        del.innerText = " Delete Todo   : ❌";
+        del.classList.add("span");
+
+
+        task.appendChild(read);
+        task.appendChild(del);
+
+        read.addEventListener("click", () => {
+          read.classList.add("green");
+         
+
+        });
+
+        del.addEventListener("click", () => {
+          task.remove();
+          
+        });
+        inp.value = "";
+      }
+    </script>
+  </body>
+</html>

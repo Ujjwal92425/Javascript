@@ -1,0 +1,147 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Problem Set 1-B</title>
+
+    <style>
+      #box {
+        height: 100px;
+        width: 300px;
+        border: 2px solid black;
+        border-radius: 1cap;
+        text-align: center;
+      }
+      .highlight {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+
+
+✅ Q1. Create & Add a Paragraph
+Ek button dabane pe ek <p> tag create ho jo likha ho:
+"Welcome to DOM Practice"
+Usko body me add karo.
+________________________________________
+✅ Q2. Add Class to Element
+Ek <div> hai jiska id "box" hai.
+Button dabao → uss div me "highlight" class add ho jaye.
+(CSS me highlight { background-color: yellow; } bana lena)
+________________________________________
+✅ Q3. Create List Item from Input
+Ek input box aur button do.
+Jab user naam likhe aur button dabaye → ek <li> bano aur usme input ka value ho.
+Us li ko ul me add karo.
+________________________________________
+✅ Q4. Clear Input Field After Submit
+Q3 ke upar waale code me hi input field ko submit ke baad empty karo.
+i.e. input.value = "" ka use karo. 
+
+
+
+    <button id="btn1" onclick="createPara()">Create Paragraph</button>
+
+    <br /><br />
+
+    <div id="box">This is div that will highlite on clicking the button</div>
+    <br />
+    <button id="btn2" onclick="highlight()">click Me</button><br /><br />
+
+    <label for="Item">Item to add</label><br /><br />
+    <input
+      type="text"
+      id="items"
+      placeholder="Enter the item to add"
+    /><br /><br />
+    <button id="btn3" id="add" onclick="addItems()">Add</button>
+    <ul id="allItems"></ul>
+    <br /><br />
+
+    <script>
+      function createPara() {
+        const newParagraph = document.createElement("p");
+        newParagraph.innerText = "This is new created paragraph ...";
+        document.body.appendChild(newParagraph);
+      }
+
+      function highlight() {
+        const element = document.getElementById("box");
+        element.classList.add("highlight");
+      }
+
+      function addItems() {
+        const inp = document.getElementById("items");
+        const data = inp.value.trim();
+
+        const list = document.getElementById("allItems");
+        // list.createElement("li"); wrong
+        const li = document.createElement("li");
+        li.innerText = data;
+        list.appendChild(li);
+
+        inp.value = "";
+      }
+    </script>
+  </body>
+</html> -->
+
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!-- From Q5 : -> 
+
+✅ Q5. Delete Any <p> Tag on Click
+Ek <p> tag banake do screen pe.
+Uske aage ❌ lagao.
+❌ dabao → wo <p> tag hat jaye screen se.
+________________________________________
+✅ Q6. Add Multiple Users + Delete Option
+Ek input lo, naam likho, button dabao → naam list me aayega + ❌ delete button ke saath.
+❌ dabane se uss naam ko hata do.
+(Ye basically tu pehle kar chuka hai, repeat for mastery)
+
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #box {
+        margin: 20px;
+        padding: 20px;
+        height: 100px;
+        width: 400px;
+        border: 2px solid black;
+        border-radius: 1cap;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box"></div>
+    <br />
+    <button id="addPara" onclick="addPara()">Add Para</button>
+
+    <script>
+      function addPara() {
+        const parent = document.getElementById("box");
+        const para = document.createElement("p");
+        para.innerText = "New Paragraph Added";
+        parent.appendChild(para);
+
+        const cross = document.createElement("span");
+        cross.innerText = "❌";
+        para.appendChild(cross); //paragraph ke sath hei cross aa jyega
+
+        cross.addEventListener("click", () => {
+          parent.removeChild(para);
+          cross.remove();
+        });
+      }
+    </script>
+  </body>
+</html>

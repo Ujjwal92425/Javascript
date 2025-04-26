@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .body {
+        margin: 20px;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ✅ Q1. Add/Delete Multiple List Items Dynamically
+    Ek input aur button hai.
+    Button click pe ek new <li> element create karo, jisme user ka naam ho.
+    Uske saath ❌ button ho.
+    Agar ❌ dabaya, toh woh particular <li> element delete ho jaye. -->
+
+    <div id="box">
+      <label for="add"> Add Item</label><br /><br />
+      <input
+        type="text"
+        id="item"
+        placeholder="Enter Item to add"
+      /><br /><br />
+      <button type="submit" id="btn" onclick="add()">Submit</button><br /><br />
+
+      <ul id="list"></ul>
+      <br />
+    </div>
+
+    <script>
+      function add() {
+        const inp = document.getElementById("item");
+        const data = inp.value.trim();
+
+        const list = document.getElementById("list");
+        const listItem = document.createElement("li");
+        const cross = document.createElement("span");
+        listItem.innerText = data;
+        cross.innerText = "❌";
+        list.appendChild(listItem);
+        listItem.appendChild(cross);
+        const mainParent = document.getElementById("box");
+
+        cross.addEventListener("click", () => {
+          list.removeChild(listItem);
+        });
+
+        inp.value = "";
+      }
+    </script>
+  </body>
+</html>
