@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 1. Simple Delegation Click: o Ek ul list banao jisme 5 li elements hon
+    ("Item 1" to "Item 5"). o Sirf ul pe event listener lagao. o Jab kisi li pe
+    click ho, uska naam alert karo.
+
+    <ul id="list">
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li>Item 3</li>
+      <li>Item 4</li>
+      <li>Item 5</li>
+    </ul>
+
+    <script>
+      const ul = document.getElementById("list");
+
+      ul.addEventListener("click", function (e) {
+        if (e.target.tagName === "LI") {
+          alert(e.target.innerText);
+        }
+      });
+    </script> -->
+
+    <div
+      id="box"
+      style="
+        height: 100px;
+        width: 300px;
+        border: 2px solid;
+        text-align: center;
+        padding-top: 20px;
+      "
+    >
+      <button id="btn1">Click</button>
+    </div>
+
+    <script>
+      const box = document.getElementById("box");
+      const btn = document.getElementById("btn1");
+
+      box.addEventListener(
+        "click",
+        function (e) {
+          console.log("Click Event Div");
+        },
+        { capture: true }
+      );
+      btn.addEventListener("click", function (e) {
+        console.log("Click Event Button");
+      });
+
+      //event sabse andar wale element (button) se start hota hai → upar ke parent (div) tak propagate karta hai. 🎈
+
+      //Pehle div ka event fire hoga (kyunki tumne {capture: true} diya hai)
+      //Fir button ka event fire hoga (normal bubbling phase me).
+    </script>
+  </body>
+</html>

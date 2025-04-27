@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 4. Dynamic List with Delegation: o Ek empty ul banao. o Ek "Add Item" button
+    banao — jab click kare to naya li add ho list me. o Jab naye item ko click
+    karo, uska naam console.log karo — delegation se.
+
+    <ul id="list"></ul>
+    <button id="btn">Add Item</button>
+
+    <script>
+      const list = document.getElementById("list");
+      const btn = document.getElementById("btn");
+      let count = 0;
+
+      btn.addEventListener("click", () => {
+        const list2 = document.createElement("li");
+        count++;
+        list2.innerText = `Item ${count} added`;
+        list.appendChild(list2);
+      });
+      list.addEventListener("click", function (e) {
+        if (e.target.tagName === "LI") {//always in capital
+          console.log(e.target.innerText);
+        }
+      });
+    </script> -->
+
+    <!-- 5. Stop Bubbling Practice: 
+    o Ek form banao, form ke andar ek button submit ka banao. 
+    o Button pe click karte waqt, event bubbling ko stopPropagation()se rokna hai. 
+    o Aisa karna hai ki button ka apna kaam chale, lekin form ka listener trigger na ho.
+
+    <form id="form">
+        <button id="submit">Submit</button>
+    </form>
+    <script>
+        const frm = document.getElementById("form")
+        const btn = document.getElementById("submit")
+
+        frm.addEventListener("click", function(e) {
+            alert("Form Event Invoked")
+        })
+        btn.addEventListener("click", function(e) {
+            alert("Button Event Invoked")
+            e.stopPropagation();
+        })
+    </script> -->
+    6. Delegated Delete Functionality: o List me 5 li banao (jaise tasks). o Har
+    li ke right side ek ❌ delete button ho. o Ek hi parent pe event listener
+    lagao — jab kisi ❌ pe click ho, uska parent li hata do.
+    <ul id="mainList">
+      <li style="margin: 10px; padding: 10px">
+        Task: Eat <button style="margin: 10px; padding: 10px">❌</button>
+      </li>
+      <li style="margin: 10px; padding: 10px">
+        Task: Dance <button style="margin: 10px; padding: 10px">❌</button>
+      </li>
+      <li style="margin: 10px; padding: 10px">
+        Task: Sleep <button style="margin: 10px; padding: 10px">❌</button>
+      </li>
+      <li style="margin: 10px; padding: 10px">
+        Task: Study <button style="margin: 10px; padding: 10px">❌</button>
+      </li>
+      <li style="margin: 10px; padding: 10px">
+        Task: Bath <button style="margin: 10px; padding: 10px">❌</button>
+      </li>
+    </ul>
+
+    <script>
+      const mainList = document.getElementById("mainList");
+
+      mainList.addEventListener("click", function (e) {
+        if (e.target.tagName === "BUTTON") {
+          const li = e.target.parentElement; // button ka parent li milega
+          //ab tum kisi element pe parentElement likhte ho, To us element ka direct parent node (jo ek Element ho), wo milta hai.
+          li.remove(); // parent li ko hata diya
+        }
+      });
+    </script>
+  </body>
+</html>
