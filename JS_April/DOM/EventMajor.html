@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Events</title>
+    <style>
+      .valid {
+        border: 2px solid green;
+      }
+      .invalid {
+        border: 2px solid red;
+      }
+      #modal {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border: 2px solid black;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <form id="form">
+      <label for="name">Name:</label><br />
+      <input type="text" id="name" placeholder="Enter your name" /><br /><br />
+
+      <label for="email">Email:</label><br />
+      <input
+        type="email"
+        id="email"
+        placeholder="Enter your email"
+      /><br /><br />
+
+      <label> <input type="checkbox" id="agree" /> I agree to terms </label
+      ><br /><br />
+
+      <button type="submit" id="submitBtn" disabled>Submit</button>
+    </form>
+
+    <!-- Modal -->
+    <div id="modal">
+      <p>Form Submitted!</p>
+    </div>
+
+    <script>
+      const form = document.getElementById("form");
+      const nameInput = document.getElementById("name");
+      const emailInput = document.getElementById("email");
+      const checkbox = document.getElementById("agree");
+      const submitBtn = document.getElementById("submitBtn");
+      const modal = document.getElementById("modal");
+
+      let nameCount = 0;
+
+      // 1. Input Events: Name character count
+      nameInput.addEventListener("keypress", () => {
+        nameCount++;
+        console.log(`You have typed ${nameCount} characters.`);
+      });
+
+      // 2. Email Validation using Regex
+      emailInput.addEventListener("input", () => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailRegex.test(emailInput.value)) {
+          emailInput.classList.add("valid");
+          emailInput.classList.remove("invalid");
+        } else {
+          emailInput.classList.add("invalid");
+          emailInput.classList.remove("valid");
+        }
+      });
+
+      // 3. Focus/Blur Events: Change border color
+      nameInput.addEventListener("focus", () => {
+        nameInput.style.borderColor = "blue";
+      });
+      nameInput.addEventListener("blur", () => {
+        nameInput.style.borderColor = "";
+      });
+
+      emailInput.addEventListener("focus", () => {
+        emailInput.style.borderColor = "blue";
+      });
+      emailInput.addEventListener("blur", () => {
+        emailInput.style.borderColor = "";
+      });
+
+      // 4. Checkbox: Enable/Disable Submit button
+      checkbox.addEventListener("change", () => {
+        if (checkbox.checked) {
+          submitBtn.disabled = false;
+        } else {
+          submitBtn.disabled = true;
+        }
+      });
+
+      // 5. Submit Event: Prevent default and display alert
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert(
+          `Form Submitted! Name: ${nameInput.value}, Email: ${emailInput.value}`
+        );
+        modal.style.display = "block"; // Show modal
+      });
+
+      // 6. Modal Close: Click outside or Escape key
+      document.addEventListener("click", (e) => {
+        if (!modal.contains(e.target) && e.target !== submitBtn) {
+          modal.style.display = "none";
+        }
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          modal.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>

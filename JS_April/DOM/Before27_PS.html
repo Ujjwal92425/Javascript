@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* Spinner Loader */
+      #loader {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #ccc;
+        border-top: 5px solid #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 150px auto;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Content initially hidden */
+      #content {
+        display: none;
+        text-align: center;
+        margin-top: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- 🧩 Q1: Double Click Background Color Changer Task: 
+    • Ek div banao. 
+    • Jab uspe double click (dblclick) ho, tab uska background color random ho jaye. 
+    Tip: random color generate karne ke liye JS use karo. 🎯 Covers: click
+    event, style manipulation, random logic -->
+
+    <!-- <div id="box1" style="height: 200px; width: 500px; border: 2px solid black">
+      This will change its color randomly
+    </div>
+
+    <script>
+      const clrBox = document.getElementById("box1");
+      clrBox.addEventListener("dblclick", () => {
+        let r = Math.floor(Math.random() * 200);
+        let g = Math.floor(Math.random() * 200);
+        let b = Math.floor(Math.random() * 200);
+
+        clrBox.style.backgroundColor = `rgb(${r},${g},${b})`;
+      });
+    </script> -->
+
+    <!-- Question 2
+    🧩 Q2: Live Character Counter for Input
+    Task:
+    •	Ek input box aur ek span banao.
+    •	Jab user type kare (input event), span me character count live update hota rahe.
+    •	Example: "You have typed 10 characters"
+    🎯 Covers: input event, value property, text update. -->
+
+    <!-- <label for="input">Input Count</label> <br /><br />
+    <input type="text" id="feild" placeholder="Likho" /><br /><br />
+    <span id="cnt"></span>
+    <script>
+      const inp = document.getElementById("feild");
+      const cntSpan = document.getElementById("cnt");
+      //let count = 0;
+      //   inp.addEventListener("keypress", () => {
+      //     count++;
+      //     cntSpan.innerText = `You have typed ${count} character`;
+      //   }); //This also work but not in backspace or enter SO,
+      inp.addEventListener("input", () => {
+        cntSpan.innerText = `You have typed ${inp.value.length} characters`;
+      });
+    </script> -->
+
+    <!-- 🧩 Q3: Ctrl + Enter to Submit Form
+    Task:
+    •	Ek form banao.
+    •	Jab banda Ctrl + Enter dabaye, tab form submit ho aur ek alert aaye "Form Submitted with Shortcut!"bina page reload ke.
+    •	Normal submit par bhi kaam kare, par shortcut se turant submit ka alert aaye.
+    🎯 Covers: keydown event, ctrlKey check, preventDefault. -->
+
+    <!-- <form id="form">
+      <label for="input">Name</label> <br /><br />
+      <input type="text" id="feild" placeholder="Name" /><br /><br />
+      <button id="btn">Submit</button>
+    </form>
+
+    <script>
+      const forms = document.getElementById("form");
+      forms.addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert("Form Submit");
+      });
+      //Form par keypress event nahi lagate.
+      document.addEventListener("keydown", (e) => {
+        if (e.ctrlKey && e.key === "Enter") {
+          e.preventDefault();
+          alert("Form Submitted via Ctrl + Enter!");
+        }
+      });
+    </script> -->
+
+    <!-- 🧩 Q4: Open/Close Modal with Keyboard
+    Task:
+    •	Ek modal aur ek open button banao.
+    •	Jab banda button click kare modal khul jaye.
+    •	Jab banda Escape (Esc) key dabaye, tab modal band ho jaye.
+    🎯 Covers: click event, keydown + key check, display toggle. -->
+
+    <!-- <div
+      id="outer"
+      style="
+        height: 100%;
+        width: 100%;
+        display: none;
+        background-color: lightslategray;
+      "
+    >
+      <div
+        id="inner"
+        style="
+          height: 200px;
+          width: 400px;
+          background-color: whitesmoke;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        "
+      >
+        Lekin Escape jaise special keys (Escape, Shift, Ctrl, etc.) keypress me
+        detect nahi hoti properly. Escape ke liye keydown event use karna padta
+        hai.
+      </div>
+    </div>
+    <button id="open">Open box</button>
+
+    <script>
+      const outerBox = document.getElementById("outer");
+      const innerBox = document.getElementById("inner");
+      const openBox = document.getElementById("open");
+
+      openBox.addEventListener("click", () => {
+        outerBox.style.display = "block";
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key == "Escape") {
+          outerBox.style.display = "none";
+        }
+      });
+    </script> -->
+
+    <!-- 🧩 Q5: Page Loader Spinner + Button Activation
+    Task:
+    •	Ek loader spinner dikhao jab tak page poora load nahi hota.
+    •	Jaise hi page load ho jaye (load event), loader gayab ho jaye aur ek button active (enabled) ho jaye (jo pehle disabled tha).
+    🎯 Covers: page load event, CSS manipulation, DOMContentLoaded/load event difference. -->
+
+    <!-- Loader -->
+    <div id="loader"></div>
+
+    <!-- Content -->
+    <div id="content">
+      <button id="myBtn" disabled>Click Me!</button>
+    </div>
+
+    <script>
+      const spin = document.getElementById("loader");
+      const content = document.getElementById("content");
+      const btn = document.getElementById("myBtn");
+      document.addEventListener("DOMContentLoaded", () => {
+        btn.disabled = false;
+      });
+      window.addEventListener("load", () => {
+        console.log("Full Page Loaded!");
+        // 🛑 Yeh line normal me hata dena, abhi test ke liye delay:
+        setTimeout(() => {
+          spin.style.display = "none";
+          content.style.display = "block";
+        }, 2000);
+      });
+    </script>
+  </body>
+</html>

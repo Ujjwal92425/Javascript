@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Search Bar with Suggestions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+    }
+    #search {
+      width: 300px;
+      padding: 10px;
+      font-size: 18px;
+    }
+    #suggestions {
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      width: 320px;
+      list-style: none;
+      padding: 0;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    #suggestions li {
+      padding: 10px;
+      cursor: pointer;
+    }
+    #suggestions li:hover {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Live Search Bar Example</h2>
+  <input type="text" id="search" placeholder="Type to search..." autocomplete="off" />
+  <ul id="suggestions"></ul>
+
+  <script>
+    const searchInput = document.getElementById('search');
+    const suggestionsList = document.getElementById('suggestions');
+
+    // Dummy data array (you can imagine it as backend data)
+    const items = [
+      'Apple', 'Banana', 'Grapes', 'Orange', 'Mango',
+      'Pineapple', 'Peach', 'Guava', 'Papaya', 'Watermelon',
+      'Strawberry', 'Blueberry', 'Blackberry', 'Kiwi', 'Lychee'
+    ];
+
+    // Listen to typing
+    searchInput.addEventListener('input', function(event) {
+      const value = event.target.value.toLowerCase();
+      suggestionsList.innerHTML = ''; // Clear previous suggestions
+
+      if (value === '') return; // Empty input - no suggestions
+
+      const filtered = items.filter(item => item.toLowerCase().includes(value));
+
+      filtered.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        suggestionsList.appendChild(li);
+      });
+    });
+
+    // Event Delegation: Click on suggestion
+    suggestionsList.addEventListener('click', function(event) {
+      if (event.target.tagName === 'LI') {
+        searchInput.value = event.target.innerText;  // Set input value
+        suggestionsList.innerHTML = '';              // Clear suggestions
+      }
+    });
+  </script>
+
+</body>
+</html>
