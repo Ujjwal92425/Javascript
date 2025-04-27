@@ -1,0 +1,76 @@
+<!-- Q-2. Modal with Multiple Modals (Medium Level) 👉 2 buttons banao: "Open Login
+Modal" "Open Signup Modal" 👉 Alag alag modals khulne chahiye: Login Modal me
+heading "Login Here" Signup Modal me heading "Signup Here" 👉 Dono modals pe:
+Click bahar kare to close ho jaye. Andar click kare to kuch na ho. 🎯 Hints: 2
+alag modals ya ek modal ke andar content badalna (depends on your logic)
+contains() se close karna. e.target ka dhyan rakhna. DRY code (repeat code na
+likhne ki koshish karna) 📢 Note: First Q1 kar lena, jab wo done ho, Fir Q2 me
+thoda logic sochna, kaise 2 modals handle kare efficiently. 🧠 Bonus Tips:
+Problem Hint Modal bahar click karne pe close Use !modal.contains(e.target)
+Modal andar click karne pe kuch na ho Ignore inside clicks Multiple modals Alag
+ids ya dynamic content change karo 📜 Summary: Question Level Q1 - Open/Close
+Modal Easy Q2 - 2 Different Modals Medium Bhai jab complete kar le to bolo, Main
+Q1 aur Q2 ka solution code + developer level best practice explaination bhi
+dunga jaise hum roadmap me ja rahe hain 🚀. -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- ✅ Modal Practice Questions:
+Q-1. Basic Modal Close (Easy Level)
+👉 Ek button banao "Open Modal".
+👉 Button click karne pe ek modal khule.
+👉 Modal ke bahar click karoge to modal band ho jaye.
+👉 Modal ke andar click karoge to kuch na ho.
+
+🎯 Hints:
+
+overlay + modal div banani hai.
+.contains(e.target) use karna.
+style.display = "block" / "none" se show/hide.-->
+    <div
+      id="outer"
+      style="
+        background-color: rgb(84, 81, 81);
+        height: 100%;
+        width: 100%;
+        display: none;
+      "
+    >
+      <div
+        id="inner"
+        style="
+          background-color: white;
+          height: 20%;
+          width: 30%;
+          margin: 100px auto;
+          padding: 20px;
+        "
+      >
+        <h1>Inner Block</h1>
+        This is inner block
+      </div>
+    </div>
+
+    <button id="open">Open Model</button>
+
+    <script>
+      const openModal = document.querySelector("button");
+      const innerDiv = document.getElementById("inner");
+      const outerDiv = document.getElementById("outer");
+
+      openModal.addEventListener("click", () => {
+        outerDiv.style.display = "block";
+      });
+      outerDiv.addEventListener("click", (e) => {
+        if (!innerDiv.contains(e.target)) {
+          outerDiv.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>

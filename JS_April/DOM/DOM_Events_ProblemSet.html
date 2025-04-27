@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- ✅ 1. Button Click Counter
+👉 Task: Ek button banayein, aur har click pe ek counter update ho.
+🎯 Requirement:
+•	Button ka label: “Click Me”
+•	Niche ek paragraph dikhaye: “You clicked 0 times”
+•	Har click pe number badhe -->
+
+    <button id="btn1">Increment Count</button><br /><br />
+
+    <!-- ✅ 2. Live Text Preview
+👉 Task: Input field me jo likhoge, wo turant niche dikhna chahiye.
+🎯 Requirement:
+•	Ek input[type="text"] ho
+•	Ek p tag ho jisme real-time me value show ho
+•	input event ka use kar -->
+
+    <input type="text" id="prev" />
+    <p id="realTime"></p>
+
+    <!-- ✅ 3. Keydown Detector
+👉 Task: Jab koi key press ho, uska naam dikhana hai
+🎯 Requirement:
+•	"You pressed: A" (example)
+•	keydown event ka use ho
+•	Body pe event lagao -->
+    <p id="keyPress"></p>
+
+    <script>
+      //Q-1
+      const one = document.getElementById("btn1");
+      let count = 0;
+      one.addEventListener("click", () => {
+        count++;
+        let p = document.createElement("p");
+        p.innerText = `You clicked ${count} times`;
+        document.body.appendChild(p);
+      });
+
+      //Q-2
+      const inp = document.getElementById("prev");
+      const text = document.getElementById("realTime");
+      inp.addEventListener("input", (e) => {
+        text.innerText = e.target.value;
+      });
+
+      //Q-3
+      document.addEventListener("keydown", (e) => {
+        let char = e.key;
+        document.getElementById("keyPress").innerText = `You Pressed ${char}`;
+      });
+    </script>
+  </body>
+</html>

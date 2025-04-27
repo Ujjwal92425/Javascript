@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // DOM ready
+        document.addEventListener('DOMContentLoaded', () => {
+          console.log('DOM loaded!');
+          document.getElementById('myBtn').disabled = false;
+        });
+      
+        // Full page load
+        window.addEventListener('load', () => {
+          console.log('Full page loaded!');
+          document.getElementById('loader').style.display = 'none';
+        });
+      
+        // Before page unload
+        window.addEventListener('beforeunload', (e) => {
+          e.preventDefault();
+          e.returnValue = '';
+        });
+      </script>
+3
+      
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Loader + DOM Example</title>
+
+    <style>
+      /* Spinner Loader */
+      #loader {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #ccc;
+        border-top: 5px solid #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 150px auto;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Content initially hidden */
+      #content {
+        display: none;
+        text-align: center;
+        margin-top: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loader -->
+    <div id="loader"></div>
+
+    <!-- Content -->
+    <div id="content">
+      <button id="myBtn" disabled>Click Me!</button>
+    </div>
+
+    <script>
+      const loader = document.getElementById("loader");
+      const content = document.getElementById("content");
+      const myBtn = document.getElementById("myBtn");
+
+      // Step 1: Jab DOM ready ho jaye --> button enable karna
+      document.addEventListener("DOMContentLoaded", () => {
+        console.log("DOM Ready!");
+        myBtn.disabled = false;
+      });
+
+      // Step 2: Jab sab kuch (images + CSS) load ho jaye --> loader hatana
+      window.addEventListener("load", () => {
+        console.log("Full Page Loaded!");
+        // 🛑 Yeh line normal me hata dena, abhi test ke liye delay:
+        setTimeout(() => {
+          loader.style.display = "none";
+          content.style.display = "block";
+        }, 2000); // 2 seconds ka delay
+        // loader.style.display = "none"; // Loader hata do
+        // content.style.display = "block"; // Content dikhao
+      });
+    </script>
+  </body>
+</html>

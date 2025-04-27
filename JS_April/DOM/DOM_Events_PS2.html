@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- ✅ 4. Form Submit Blocker
+👉 Task: Ek form ho jisme submit hone par alert aaye: “Form Submitted!”
+Par bina refresh ke.
+🎯 Requirement:
+•	Name input ho, Submit button ho
+•	Form ko submit hone se preventDefault se roko
+•	Alert ya console log dikhao -->
+    <form id="form1">
+      <label for="Name"> Name </label><br /><br />
+      <input type="text" placeholder="Name" /><br /><br />
+      <button id="btn1">Submit</button>
+    </form>
+
+    <!-- ✅ 5. Hover to Change Color
+👉 Task: Ek div ho jiska background hover pe change ho aur hatne pe wapas normal ho jaye.
+🎯 Requirement:
+•	mouseover → bg color green
+•	mouseout → bg color white -->
+
+    <div id="box" style="height: 200px; width: 500px; border: 2px solid black">
+      Color Change
+    </div>
+
+    <script>
+      const form = document.getElementById("form1");
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert("Form Submitted!");
+      });
+
+      const container = document.querySelector("div");
+      container.addEventListener("mouseover", () => {
+        container.style.backgroundColor = "green";
+      });
+      container.addEventListener("mouseout", () => {
+        container.style.backgroundColor = "white";
+      });
+    </script>
+  </body>
+</html>
