@@ -1,0 +1,61 @@
+<!-- //checkbox t&c -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="registerForm">
+      <input
+        type="text"
+        id="username"
+        placeholder="Enter username"
+      /><br /><br />
+      <input type="email" id="email" placeholder="Enter email" /><br /><br />
+
+      <label>
+        <input type="checkbox" id="tnc" />
+        I accept the Terms and Conditions
+      </label>
+      <br /><br />
+
+      <button type="submit" id="submitBtn">Submit</button>
+    </form>
+
+    <p id="errorMsg" style="color: red"></p>
+
+    <script>
+      const form = document.getElementById("registerForm");
+      const username = document.getElementById("username");
+      const email = document.getElementById("email");
+      const tnc = document.getElementById("tnc");
+      const errorMsg = document.getElementById("errorMsg");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault(); // form ke reload ko rokta hai
+
+        if (username.value.trim() === "" || email.value.trim() === "") {
+          errorMsg.innerText = "All fields are required!";
+          return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.value.trim())) {
+          errorMsg.innerText = "Please enter a valid email address.";
+          return;
+        }
+
+        if (!tnc.checked) {
+          errorMsg.innerText = "You must accept the Terms and Conditions.";
+          return;
+        }
+
+        // All validations passed
+        errorMsg.innerText = "";
+        alert("Form submitted successfully!");
+      });
+    </script>
+  </body>
+</html>

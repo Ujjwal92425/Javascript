@@ -1,0 +1,52 @@
+<h2>Login Form</h2>
+
+<form id="loginForm">
+  <input type="text" id="email" placeholder="Enter Email" />
+  <br /><br />
+  <input type="password" id="password" placeholder="Enter Password" />
+  <br /><br />
+  <button type="submit">Login</button>
+  <p id="error" style="color: red;"></p>
+</form>
+
+<script>
+const form = document.getElementById('loginForm');
+const email = document.getElementById('email');
+const password = document.getElementById('password');
+const errorPara = document.getElementById('error');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault(); // Prevent page reload
+
+  let errors = [];
+
+  if (email.value.trim() === '') {
+    errors.push('Email is required');
+    email.style.border = '2px solid red';
+  } else {
+    email.style.border = '2px solid green';
+  }
+
+  if (password.value.trim() === '') {
+    errors.push('Password is required');
+    password.style.border = '2px solid red';
+  } else {
+    password.style.border = '2px solid green';
+  }
+
+  if (errors.length > 0) {
+    errorPara.innerText = errors.join(', ');
+  } else {
+    errorPara.innerText = '';
+    console.log('Form submitted successfully!');
+    // Form data can be sent to server here
+  }
+});
+
+// Focus blur styling
+email.addEventListener('focus', () => email.style.backgroundColor = '#e0f7fa');
+email.addEventListener('blur', () => email.style.backgroundColor = '');
+
+password.addEventListener('focus', () => password.style.backgroundColor = '#e0f7fa');
+password.addEventListener('blur', () => password.style.backgroundColor = '');
+</script>

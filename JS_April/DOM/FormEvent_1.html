@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Events</title>
+  </head>
+  <body>
+    <form id="myForm">
+      <input type="text" id="username" placeholder="Enter Username" />
+      <input type="password" id="password" placeholder="Enter Password" />
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      const form = document.getElementById("myForm");
+      const username = document.getElementById("username");
+      const password = document.getElementById("password");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault(); // page reload rokne ke liye
+        console.log("Form submitted!");
+      });
+
+      username.addEventListener("focus", function () {
+        console.log("Username field focused");
+      });
+
+      username.addEventListener("blur", function () {
+        console.log("Username field lost focus");
+      });
+
+      username.addEventListener("input", function () {
+        console.log("Username typing:", username.value);
+      });
+
+      password.addEventListener("change", function () {
+        console.log("Password changed");
+      });
+    </script>
+  </body>
+</html>

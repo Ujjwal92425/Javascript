@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Events</title>
+  </head>
+  <body>
+    <input type="text" id="username" placeholder="Enter username" />
+
+    <script>
+      const username = document.getElementById("username");
+
+      username.addEventListener("focus", function () {
+        username.style.border = "2px solid green";
+      });
+
+      username.addEventListener("blur", function () {
+        if (username.value.trim() === "") {
+          username.style.border = "2px solid red";
+        } else {
+          username.style.border = "2px solid green";
+        }
+      });
+    </script>
+
+    <!-- input.addEventListener('focus', () => {
+    input.style.border = '2px solid blue';
+  });
+  
+  input.addEventListener('blur', () => {
+    if (input.value.trim() === '') {
+      input.style.border = '2px solid red';
+    } else {
+      input.style.border = '2px solid green';
+    }
+  }); -->
+  </body>
+</html>
