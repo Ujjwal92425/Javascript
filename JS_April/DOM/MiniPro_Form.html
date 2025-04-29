@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MiniPro Form</title>
+    <style>
+      body {
+        background-color: rgb(43, 44, 45);
+        font-family: Arial, sans-serif;
+        color: rgb(248, 248, 247);
+      }
+      #mainbox {
+        width: 400px;
+        text-align: center;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: yellow 1px 1px 10px 2px;
+        border-radius: 10px;
+      }
+      input {
+        height: 20px;
+      }
+      #btn {
+        height: 35px;
+        width: 100px;
+        background-color: lightblue;
+        border-radius: 10px;
+      }
+      #btn:hover {
+        height: 35px;
+        width: 100px;
+        background-color: lightblue;
+        border-radius: 10px;
+        box-shadow: rgb(83, 95, 231) 1px 1px 10px 2px;
+      }
+      .red {
+        border: 2px solid red;
+      }
+      .green {
+        border: 2px solid green;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="mainbox">
+      <h1 id="heading">Registration Form</h1>
+      <form id="form">
+        <label for="userName">Username</label><br /><br />
+        <input
+          type="text"
+          id="userName"
+          name="userName"
+          placeholder="UserName"
+          required
+        /><br /><br />
+
+        <label for="password">Password</label><br /><br />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          placeholder="Password"
+          required
+        /><br /><br />
+
+        <label for="Confirm Password">Confirm Password</label><br /><br />
+        <input
+          type="password"
+          id="Conpassword"
+          name="Conpassword"
+          placeholder="Confirm Password"
+          required
+        /><br /><br />
+
+        <label for="Email">Email</label><br /><br />
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Email"
+          required
+        /><br /><br />
+
+        <label for="Gender">Gender : &nbsp;</label>
+
+        <label for="Male">Male</label>
+        <input type="radio" id="male" name="Gender" value="male" />
+
+        <label for="Female">Female</label>
+        <input
+          type="radio"
+          id="Female"
+          name="Gender"
+          value="Female"
+        /><br /><br />
+
+        <label>
+          <input type="checkbox" id="tnc" />
+          I accept the Terms & Conditions </label
+        ><br /><br />
+
+        <button type="submit" id="btn">Submit</button><br /><br />
+
+        <script>
+          const btn = document.getElementById("btn");
+          btn.disabled = true;
+
+          btn.addEventListener("click", ()=> {
+            alert("Form Submitted")
+          })
+          const form = document.getElementById("form");
+
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+          });
+
+          const userName = document.getElementById("userName");
+
+          userName.addEventListener("input", function (e) {
+            if (userName.value === "" || userName.value.length < 5) {
+              userName.setCustomValidity(
+                "Value must be greater than 5 and can't be null"
+              );
+              btn.disabled = true;
+            } else {
+              userName.setCustomValidity("");
+              btn.disabled = false;
+            }
+          });
+
+          const ipass = document.getElementById("password");
+          const cpass = document.getElementById("Conpassword");
+
+          ipass.addEventListener("blur", function (e) {
+            if (ipass.value == "" || ipass.value.length < 8) {
+              ipass.classList.add("red");
+              ipass.setCustomValidity(
+                "Password should be of 8 character and can't be null"
+              );
+              btn.disabled = true;
+            } else {
+              ipass.setCustomValidity("");
+              ipass.classList.remove("red");
+              ipass.classList.add("green");
+              btn.disabled = false;
+            }
+          });
+
+          cpass.addEventListener("blur", function (e) {
+            if (cpass.value != ipass.value) {
+              cpass.classList.add("red");
+              cpass.setCustomValidity(
+                "Confirm Password should be same as Password "
+              );
+              btn.disabled = true;
+            } else {
+              cpass.setCustomValidity("");
+              cpass.classList.remove("red");
+              btn.disabled = false;
+            }
+          });
+
+          const mail = document.getElementById("email");
+
+          mail.addEventListener("input", function (e) {
+            const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+            if (!regex.test(mail.value.trim())) {
+              mail.setCustomValidity("Invalid Email");
+              mail.classList.add("red");
+              btn.disabled = true;
+            } else {
+              mail.setCustomValidity("");
+              mail.classList.remove("red");
+              btn.disabled = false;
+            }
+          });
+
+          const check = document.getElementById("tnc");
+          check.addEventListener("click", () => {
+            if (!check.checked) {
+              check.setCustomValidity("Please agree to terms & condition");
+              btn.disabled = true;
+            } else {
+              check.setCustomValidity("");
+              btn.disabled = false;
+            }
+          });
+        </script>
+      </form>
+    </div>
+  </body>
+</html>

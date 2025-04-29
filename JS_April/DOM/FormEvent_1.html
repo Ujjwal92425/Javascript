@@ -6,7 +6,7 @@
     <title>Form Events</title>
   </head>
   <body>
-    <form id="myForm">
+    <!-- <form id="myForm">
       <input type="text" id="username" placeholder="Enter Username" />
       <input type="password" id="password" placeholder="Enter Password" />
       <button type="submit">Submit</button>
@@ -37,6 +37,26 @@
       password.addEventListener("change", function () {
         console.log("Password changed");
       });
+    </script> -->
+    <form id="form">
+      <input type="text" id="username" required placeholder="Enter username" />
+      <button type="submit">Submit</button>
+    </form>
+    
+    <script>
+      const form = document.getElementById('form');
+      const username = document.getElementById('username');
+    
+      form.addEventListener('submit', function (e) {
+        e.preventDefault()
+        if (username.value.length < 5) {
+          username.setCustomValidity("Username must be at least 5 characters long!");
+          // Browser khud hi error message dikhayega
+        } else {
+          username.setCustomValidity(""); // Agar sab sahi hai, to custom message hata do
+        }
+      });
     </script>
+    
   </body>
 </html>

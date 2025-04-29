@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MiniPro Form</title>
+  <style>
+    body {
+      background-color: rgb(43, 44, 45);
+      font-family: Arial, sans-serif;
+      color: rgb(248, 248, 247);
+    }
+
+    #mainbox {
+      width: 400px;
+      text-align: center;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: yellow 1px 1px 10px 2px;
+      border-radius: 10px;
+      padding: 20px;
+    }
+
+    input {
+      height: 20px;
+    }
+
+    #btn {
+      height: 35px;
+      width: 100px;
+      background-color: lightblue;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+    }
+
+    #btn:hover {
+      box-shadow: rgb(83, 95, 231) 1px 1px 10px 2px;
+    }
+
+    .red {
+      border: 2px solid red;
+    }
+
+    .green {
+      border: 2px solid green;
+    }
+
+    label {
+      font-size: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div id="mainbox">
+    <h1>Registration Form</h1>
+    <form id="form" novalidate>
+      <!-- Username -->
+      <label for="userName">Username</label><br /><br />
+      <input type="text" id="userName" name="userName" placeholder="UserName" required /><br /><br />
+
+      <!-- Password -->
+      <label for="password">Password</label><br /><br />
+      <input type="password" id="password" name="password" placeholder="Password" required /><br /><br />
+
+      <!-- Confirm Password -->
+      <label for="Conpassword">Confirm Password</label><br /><br />
+      <input type="password" id="Conpassword" name="Conpassword" placeholder="Confirm Password" required /><br /><br />
+
+      <!-- Email -->
+      <label for="email">Email</label><br /><br />
+      <input type="email" id="email" name="email" placeholder="Email" required /><br /><br />
+
+      <!-- Gender -->
+      <label>Gender:</label>
+      <label for="male">Male</label>
+      <input type="radio" id="male" name="Gender" value="Male" />
+      <label for="female">Female</label>
+      <input type="radio" id="female" name="Gender" value="Female" /><br /><br />
+
+      <!-- Terms & Conditions -->
+      <label>
+        <input type="checkbox" id="tnc" />
+        I accept the Terms & Conditions
+      </label><br /><br />
+
+      <!-- Submit Button -->
+      <button type="submit" id="btn" disabled>Submit</button><br /><br />
+    </form>
+  </div>
+
+  <script>
+    // Get form elements
+    const form = document.getElementById("form");
+    const userName = document.getElementById("userName");
+    const ipass = document.getElementById("password");
+    const cpass = document.getElementById("Conpassword");
+    const mail = document.getElementById("email");
+    const check = document.getElementById("tnc");
+    const btn = document.getElementById("btn");
+
+    // Validate all fields and enable/disable the button
+    function validateForm() {
+      let isValid = true;
+
+      // Username Validation
+      if (userName.value.trim().length < 5) {
+        userName.setCustomValidity("Username must be at least 5 characters.");
+        userName.classList.add("red");
+        userName.classList.remove("green");
+        isValid = false;
+      } else {
+        userName.setCustomValidity("");
+        userName.classList.remove("red");
+        userName.classList.add("green");
+      }
+
+      // Password Validation
+      if (ipass.value.trim().length < 8) {
+        ipass.setCustomValidity("Password must be at least 8 characters.");
+        ipass.classList.add("red");
+        ipass.classList.remove("green");
+        isValid = false;
+      } else {
+        ipass.setCustomValidity("");
+        ipass.classList.remove("red");
+        ipass.classList.add("green");
+      }
+
+      // Confirm Password Validation
+      if (cpass.value !== ipass.value || cpass.value === "") {
+        cpass.setCustomValidity("Passwords do not match.");
+        cpass.classList.add("red");
+        cpass.classList.remove("green");
+        isValid = false;
+      } else {
+        cpass.setCustomValidity("");
+        cpass.classList.remove("red");
+        cpass.classList.add("green");
+      }
+
+      // Email Validation using regex
+      const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!regex.test(mail.value.trim())) {
+        mail.setCustomValidity("Invalid email format.");
+        mail.classList.add("red");
+        mail.classList.remove("green");
+        isValid = false;
+      } else {
+        mail.setCustomValidity("");
+        mail.classList.remove("red");
+        mail.classList.add("green");
+      }
+
+      // Gender Validation
+      const genderSelected = document.querySelector('input[name="Gender"]:checked');
+      if (!genderSelected) {
+        isValid = false;
+      }
+
+      // Terms & Conditions
+      if (!check.checked) {
+        check.setCustomValidity("Please accept Terms & Conditions.");
+        isValid = false;
+      } else {
+        check.setCustomValidity("");
+      }
+
+      // Enable or disable the submit button
+      btn.disabled = !isValid;
+    }
+
+    // Validate on input / blur / change events
+    [userName, ipass, cpass, mail].forEach((input) => {
+      input.addEventListener("input", validateForm);
+      input.addEventListener("blur", validateForm);
+    });
+
+    document.querySelectorAll('input[name="Gender"]').forEach((radio) => {
+      radio.addEventListener("change", validateForm);
+    });
+
+    check.addEventListener("change", validateForm);
+
+    // Final submit action
+    form.addEventListener("submit", function (e) {
+      e.preventDefault(); // Prevent actual form submission
+      if (form.checkValidity()) {
+        alert("Form Submitted Successfully!");
+        form.reset(); // Optional: clear form
+        btn.disabled = true; // Disable button again
+        document.querySelectorAll("input").forEach(input => {
+          input.classList.remove("green", "red");
+        });
+      } else {
+        form.reportValidity(); // Show native browser errors
+      }
+    });
+  </script>
+</body>
+</html>
