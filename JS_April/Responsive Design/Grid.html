@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Grid Example</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background-color: #f5f5f5;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #333;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background-color: #4a90e2;
+      color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Responsive Grid Layout</h1>
+
+  <div class="grid">
+    <div class="card">Box 1</div>
+    <div class="card">Box 2</div>
+    <div class="card">Box 3</div>
+    <div class="card">Box 4</div>
+    <div class="card">Box 5</div>
+    <div class="card">Box 6</div>
+    <div class="card">Box 7</div>
+    <div class="card">Box 8</div>
+  </div>
+
+</body>
+</html>
+

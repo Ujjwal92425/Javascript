@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Positioning Demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+    }
+
+    /* Sticky Navbar */
+    header {
+      position: sticky;
+      top: 0;
+      background: #222;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .container {
+      padding: 2rem;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .card {
+      position: relative;
+      width: 250px;
+      background: #f5f5f5;
+      border-radius: 10px;
+      padding: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    /* Absolute badge inside relative card */
+    .badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: crimson;
+      color: white;
+      padding: 0.3rem 0.6rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+    }
+
+    /* Fixed back-to-top button */
+    .fixed-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: green;
+      color: white;
+      padding: 0.7rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Navbar -->
+  <header>
+    <h1>My Product Store</h1>
+  </header>
+
+  <!-- Card Layout -->
+  <div class="container">
+    <div class="card">
+      <div class="badge">New</div>
+      <h2>Product 1</h2>
+      <p>Cool product with great features.</p>
+    </div>
+
+    <div class="card">
+      <div class="badge">Sale</div>
+      <h2>Product 2</h2>
+      <p>On discount today only!</p>
+    </div>
+
+    <div class="card">
+      <h2>Product 3</h2>
+      <p>Best seller of the month.</p>
+    </div>
+  </div>
+
+  <!-- Fixed Button -->
+  <button class="fixed-button" onclick="scrollToTop()">↑ Top</button>
+
+  <script>
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
