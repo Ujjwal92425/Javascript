@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Storage Example</title>
+    <style>
+      body {
+        font-family: Arial;
+        padding: 20px;
+      }
+      input {
+        padding: 8px;
+        margin-right: 10px;
+      }
+      button {
+        margin: 5px;
+        padding: 8px 12px;
+      }
+      .output {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Storage Example</h2>
+
+    <input type="text" id="dataInput" placeholder="Enter some data..." />
+    <br />
+    <button onclick="saveToLocal()">Save to localStorage</button>
+    <button onclick="saveToSession()">Save to sessionStorage</button>
+    <button onclick="clearStorage()">Clear Both</button>
+
+    <div class="output">
+      <h3>Stored Data:</h3>
+      <p><strong>LocalStorage:</strong> <span id="localData"></span></p>
+      <p><strong>SessionStorage:</strong> <span id="sessionData"></span></p>
+    </div>
+
+    <script>
+      const input = document.getElementById("dataInput");
+      const localSpan = document.getElementById("localData");
+      const sessionSpan = document.getElementById("sessionData");
+
+      // Load stored data on page load
+      window.onload = () => {
+        localSpan.textContent =
+          localStorage.getItem("myData") || "Nothing stored";
+        sessionSpan.textContent =
+          sessionStorage.getItem("myData") || "Nothing stored";
+      };
+
+      function saveToLocal() {
+        const value = input.value;
+        localStorage.setItem("myData", value);
+        localSpan.textContent = value;
+      }
+
+      function saveToSession() {
+        const value = input.value;
+        sessionStorage.setItem("myData", value);
+        sessionSpan.textContent = value;
+      }
+
+      function clearStorage() {
+        localStorage.removeItem("myData");
+        sessionStorage.removeItem("myData");
+        localSpan.textContent = "Nothing stored";
+        sessionSpan.textContent = "Nothing stored";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Traversing Test</title>
+    <style>
+      li {
+        cursor: pointer;
+        margin: 10px 0;
+      }
+      .highlight {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box">
+      <h1 id="head">DOM Traversing</h1>
+      <ul id="main">
+        <li>Ujjwal Kumar</li>
+        <li>Chat GPT 4o</li>
+        <li>Aditya Kumar</li>
+        <li>Shubham Kumar</li>
+        <li>Shiv Purbay</li>
+      </ul>
+    </div>
+
+    <script>
+      const heading = document.getElementById("head");
+      heading.addEventListener("click", function () {
+        console.log("Parent:", this.parentElement);
+        console.log("Children:", this.children);
+        console.log("Child Nodes:", this.childNodes);
+        console.log("Last Child:", this.lastChild);
+      });
+
+      const Mlist = document.getElementById("main");
+
+      Mlist.addEventListener("click", function (e) {
+        if (e.target.tagName === "LI") {
+          const clicked = e.target;
+          console.log("Parent:", this.parentElement);
+          console.log("Children:", this.children);
+          console.log("Child Nodes:", this.childNodes);
+          console.log("Last Child:", this.lastChild);
+
+          // Clear all highlights
+          Array.from(this.children).forEach((li) =>
+            li.classList.remove("highlight")
+          );
+
+          //    🔍 Step-by-Step Meaning:
+          //   ✅ this.children
+          //   Yeh this ka matlab hai Mlist (jo <ul> element hai).
+
+          //   .children ka matlab hai uske sare direct child elements, jo yaha <li> items hain.
+
+          //   Yeh ek HTMLCollection return karta hai (array jaisa hota hai, par full array nahi hota).
+
+          //   ✅ Array.from(this.children)
+          //   Kyunki HTMLCollection full array nahi hota, hum Array.from() se usko true array bana lete hain.
+
+          //   Taki forEach() jaisa loop use kar saken.
+
+          //   ✅ .forEach((li) => li.classList.remove("highlight"))
+          //   Ab hum har <li> pe loop laga rahe hain.
+
+          //   Har list item (li) se highlight class ko remove kar rahe hain.
+
+          //   Taaki pehle se kisi par highlight laga ho to hat jaye.
+
+          // Highlight current, parent, next, previous
+          clicked.classList.add("highlight");
+          //   if (clicked.previousElementSibling) clicked.previousElementSibling.classList.add("highlight");
+          //   if (clicked.nextElementSibling) clicked.nextElementSibling.classList.add("highlight");
+        }
+      });
+    </script>
+  </body>
+</html>

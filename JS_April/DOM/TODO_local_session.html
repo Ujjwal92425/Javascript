@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TODO with LocalStorage</title>
+  <style>
+    body {
+      background-color: rgb(42, 40, 40);
+      color: white;
+      font-size: x-large;
+    }
+    #box {
+      margin: 10px;
+      padding: 10px;
+      height: 600px;
+      width: 400px;
+      text-align: center;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: rgb(77, 80, 241) 1px 1px 10px 2px;
+      border-radius: 10px;
+    }
+    input {
+      height: 20px;
+      width: 200px;
+    }
+    #btn {
+      height: 40px;
+      width: 150px;
+    }
+    #lst {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    li {
+      margin: 10px 0;
+    }
+    span {
+      color: red;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="box">
+    <label for="Add Task"><b>Add Task</b></label><br /><br />
+    <input type="text" id="task" placeholder="Add Task" /><br /><br />
+    <button id="btn">Add Task</button>
+    <ul id="lst"></ul>
+  </div>
+
+  <script>
+    const input = document.getElementById("task");
+    const btn = document.getElementById("btn");
+    const ulList = document.getElementById("lst");
+
+    // 🟢 Load saved tasks on page load
+    window.onload = () => {
+      const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+      tasks.forEach(task => renderTask(task));
+    };
+
+    // 🟢 Add task on button click
+    btn.addEventListener("click", () => {
+      const taskText = input.value.trim();
+      if (taskText === "") {
+        alert("Empty Task");
+        return;
+      }
+
+      let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+      tasks.push(taskText);
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+
+      renderTask(taskText);
+      input.value = ""; // clear input
+    });
+
+    // 🟢 Render one task
+    function renderTask(taskText) {
+      const li = document.createElement("li");
+      li.textContent = taskText;
+
+      const dlt = document.createElement("span");
+      dlt.textContent = "❌";
+
+      dlt.addEventListener("click", () => {
+        li.remove();
+
+        // Remove from localStorage
+        let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        tasks = tasks.filter(t => t !== taskText); // remove clicked task
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+      });
+
+      li.appendChild(dlt);
+      ulList.appendChild(li);
+    }
+  </script>
+</body>
+</html>

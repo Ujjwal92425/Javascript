@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="clickMe">Click Me Fast!</button>
+
+    <script>
+      function throttle(fun, delay) {
+        let lstCall = 0;
+
+        return function(...args) {
+            const now = new Date().getTime()
+            if(now - lstCall >= delay) {
+                lstCall=now;
+                fun.apply(this,args)
+                
+            }
+        }
+        // ?
+      }
+
+      function handleClick() {
+        console.log("Button clicked at", new Date().toLocaleTimeString());
+      }
+
+      const throttledClick = throttle(handleClick, 1000);
+
+      document
+        .getElementById("clickMe")
+        .addEventListener("click", throttledClick);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="searchInput" placeholder="Search..." />
+    <script>
+      function searchHandler(e) {
+        console.log("Searching for:", e.target.value);
+      }
+
+      // Your debounce function here
+      function debounce(fn, delay) {
+        // ?
+        let timer;
+        return function (...args) {
+          clearTimeout(timer);
+          timer = setTimeout(() => {
+            fn.apply(this, args);
+          }, delay);
+        };
+      }
+
+      function handleResize() {
+        console.log("Resizing finished!");
+      }
+
+      const debouncedSearch = debounce(searchHandler, 500);
+
+      document.getElementById("searchInput").addEventListener("input", debouncedSearch);
+
+      //window 
+      function debounceScreen(fun, delay) {
+        let time;
+        return function (...args) {
+          clearTimeout(time);
+          time = setTimeout(() => {
+            fun.apply(this, args);
+          }, delay);
+        };
+      }
+
+      function handleResize() {
+        console.log("Resizing stopped at", new Date().toLocaleTimeString());
+      }
+
+      const debouncedResize = debounceScreen(handleResize, 400);
+      window.addEventListener("resize", debouncedResize);
+
+
+    </script>
+  </body>
+</html>

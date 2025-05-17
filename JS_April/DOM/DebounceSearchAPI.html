@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Live Search with Debounce</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; }
+    input { width: 300px; padding: 0.5rem; }
+    ul { list-style: none; padding: 0; }
+    li { margin: 5px 0; }
+    a { text-decoration: none; color: blue; }
+  </style>
+</head>
+<body>
+  <h2>Live Search (Wikipedia)</h2>
+  <input type="text" id="searchInput" placeholder="Search Wikipedia..." />
+  <ul id="results"></ul>
+
+  <script>
+    function debounce(fn, delay) {
+      let timer;
+      return function (...args) {
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+          fn.apply(this, args);
+        }, delay);
+      };
+    }
+
+    async function fetchWikiResults(query) {
+      const res = await fetch(
+        `https://en.wikipedia.org/w/api.php?action=query&list=search&format=json&origin=*&srsearch=${query}`
+      );
+      const data = await res.json();
+      showResults(data.query.search);
+    }
+
+    function showResults(results) {
+      const resultsList = document.getElementById("results");
+      resultsList.innerHTML = "";
+
+      results.forEach((item) => {
+        const li = document.createElement("li");
+        li.innerHTML = `<a href="https://en.wikipedia.org/?curid=${item.pageid}" target="_blank">${item.title}</a>`;
+        resultsList.appendChild(li);
+      });
+    }
+
+    const searchInput = document.getElementById("searchInput");
+    const handleSearch = (e) => {
+      const query = e.target.value.trim();
+      if (query !== "") {
+        fetchWikiResults(query);
+      }
+    };
+
+    searchInput.addEventListener("input", debounce(handleSearch, 500));
+  </script>
+</body>
+</html>
