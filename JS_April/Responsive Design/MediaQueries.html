@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 50px;
+      background-color: white;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    /* MOBILE VIEW */
+    @media (max-width: 600px) {
+      body {
+        background-color: lightcoral;
+      }
+
+      h1 {
+        font-size: 1.2rem;
+      }
+    }
+
+    /* TABLET VIEW */
+    @media (min-width: 601px) and (max-width: 900px) {
+      body {
+        background-color: lightseagreen;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+    }
+
+    /* DESKTOP VIEW */
+    @media (min-width: 901px) {
+      body {
+        background-color: lightyellow;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Resize the browser window</h1>
+  <p>Color and font size will change based on screen size.</p>
+</body>
+</html>
