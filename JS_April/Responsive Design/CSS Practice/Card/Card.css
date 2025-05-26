@@ -1,0 +1,99 @@
+* {
+    box-sizing: border-box;
+    color: white;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  body{
+    background-color: black;
+  }
+
+  /* Outer container with flexible height */
+  .outer {
+    position: relative;
+    display: flex;
+    justify-content: center;     /* horizontally center card */
+    align-items: center;         /* vertically center card (if fixed height) */
+    min-width:40vw;
+    min-height: 40vh;            /* allows growth if content is taller */
+    padding: 1rem;               /* space inside outer */
+    height: auto;
+    width: auto;
+  }
+
+  /* Card layout */
+  .card {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a1a;   /* slightly different black for contrast */
+    display: flex;
+    flex-direction: column;     /* stack items vertically */
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 10px;
+    gap: 0.5rem;                /* space between elements */
+    box-shadow: 0px 0px 20px lightyellow;
+    margin: 1rem;
+  }
+
+  /* Image styles */
+  .card img {
+    width: 40%;
+    height: auto;               /* maintain aspect ratio */
+    max-height: 150px;          /* prevent too large images */
+    display: block;
+    margin: 0 auto;
+  }
+
+  .heading {
+    font-weight: 600;
+    font-size: 1.5rem;
+  }
+
+  .dtl {
+    font-weight: 300;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+
+  /* Button styles */
+  #more {
+    height: 2rem;
+    width: 6rem;
+    background-color: blue;
+    color: white;
+    border-radius: 0.5rem;
+    box-shadow: 1px 1px 5px lightblue;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  #more:hover {
+    box-shadow: 1px 1px 10px lightblue;
+  }
+
+  /* Price tag styles */
+  .price {
+    color: red;
+    background-color: aliceblue;
+    padding: 4px 10px;
+    text-align: center;
+    border-radius: 1rem;
+    position: absolute;     /* floating in top-right of card */
+    top: 10px;
+    right: 10px;
+    font-size: 0.9rem;
+    color: red;
+  }
+
+  @media (max-width: 700px) {
+    .outer {
+      flex-direction: column;
+    }
+  }
+  
+  
