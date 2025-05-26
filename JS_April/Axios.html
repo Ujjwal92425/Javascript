@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>All Posts</h2>
+    <ul id="posts"></ul>
+
+    <h3>Add New Post</h3>
+    <input type="text" id="title" placeholder="Title" />
+    <input type="text" id="body" placeholder="Body" />
+    <button onclick="addPost()">Add</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+      const postList = document.getElementById("posts");
+
+      // 🔹 GET All Posts
+      async function getPosts() {
+        const res = await axios.get(
+          "https://jsonplaceholder.typicode.com/posts?_limit=5"
+        );
+        postList.innerHTML = ""; // clear list
+        res.data.forEach((post) => {
+          const li = document.createElement("li");
+          li.innerHTML = `
+      <strong>${post.title}</strong> - ${post.body}
+      <button onclick="deletePost(${post.id})">❌</button>`;
+          postList.appendChild(li);
+        });
+      }
+      getPosts();
+
+      // 🔹 POST New Post
+      async function addPost() {
+        const title = document.getElementById("title").value;
+        const body = document.getElementById("body").value;
+
+        if (!title || !body) return alert("Please fill all fields");
+
+        await axios.post("https://jsonplaceholder.typicode.com/posts", {
+          title,
+          body,
+          userId: 1,
+        });
+
+        getPosts(); // refresh list
+      }
+
+      // 🔹 DELETE Post
+      async function deletePost(id) {
+        await axios.delete(`https://jsonplaceholder.typicode.com/posts/${id}`);
+        getPosts(); // refresh list
+      }
+    </script>
+  </body>
+</html>

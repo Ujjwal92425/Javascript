@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .lazy {
+        filter: blur(4px);
+        transition: filter 0.3s;
+      }
+      .lazy.loaded {
+        filter: blur(0);
+      }
+    </style>
+  </head>
+  <body>
+    <img
+      data-src="bmw-m8-gran-coupe-3840x2160-18374.jpg"
+      alt="Lazy Image"
+      class="lazy"
+      width="400"
+      height="300"
+    />
+    <img
+      data-src="Mustang.jpg"
+      alt="Lazy Image"
+      class="lazy"
+      width="400"
+      height="300"
+    />
+    <img
+      data-src="Nissan Neon.jpg"
+      alt="Lazy Image"
+      class="lazy"
+      width="400"
+      height="300"
+    />
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const lazyImages = document.querySelectorAll("img.lazy");
+
+        const observer = new IntersectionObserver((entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.src = img.getAttribute("data-src");
+              img.classList.add("loaded");
+              observer.unobserve(img);
+            }
+          });
+        });
+
+        lazyImages.forEach((img) => observer.observe(img));
+      });
+    </script>
+  </body>
+</html>
